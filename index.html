@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday ❤️</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins, sans-serif;
+scroll-behavior:smooth;
+}
+section{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:40px;
+}
+/* Love Theme */
+#entry{background:linear-gradient(135deg,#ff9a9e,#fad0c4);}
+#intro{background:#fff0f5;}
+#fullPicSection{background:black;}
+#wishSection{background:linear-gradient(135deg,#fbc2eb,#a6c1ee);}
+#memories{background:#fff5f8;}
+#messageSection{background:linear-gradient(135deg,#667eea,#764ba2);color:white;}
+#finalSection{background:black;color:white;}
+h1{
+font-size:3rem;
+margin-bottom:20px;
+}
+button{
+padding:12px 30px;
+border:none;
+border-radius:25px;
+background:#ff4081;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+/* Floating Hearts */
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-100vh);opacity:0;}
+}
+/* FULL SCREEN FLIP IMAGE */
+#fullPic{
+width:100%;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+perspective:1200px;
+cursor:pointer;
+}
+.pic-card{
+width:90%;
+height:90%;
+position:relative;
+transform-style:preserve-3d;
+transition:1s;
+}
+.pic-card.flip{
+transform:rotateY(180deg);
+}
+.pic-front,.pic-back{
+position:absolute;
+width:100%;
+height:100%;
+backface-visibility:hidden;
+border-radius:20px;
+}
+.pic-front img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:20px;
+}
+.pic-back{
+background:#ff2e63;
+color:white;
+transform:rotateY(180deg);
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:2rem;
+padding:20px;
+text-align:center;
+}
+/* Candle */
+#wishText{
+font-size:3rem;
+margin-bottom:60px;
+}
+.candle-container{
+position:relative;
+}
+.candle{
+width:40px;
+height:140px;
+background:white;
+border-radius:10px;
+}
+.flame{
+width:20px;
+height:30px;
+background:orange;
+border-radius:50%;
+position:absolute;
+top:-30px;
+left:10px;
+animation:flicker 0.3s infinite alternate;
+}
+@keyframes flicker{
+from{transform:scale(1);}
+to{transform:scale(1.15);}
+}
+/* Countdown */
+#countdown{
+position:fixed;
+bottom:20px;
+right:20px;
+background:black;
+color:white;
+padding:10px 20px;
+border-radius:10px;
+font-size:20px;
+}
+/* Memories Grid */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+width:90%;
+max-width:1100px;
+}
+/* MEMORY FLIP CARDS */
+.mem-card{
+perspective:1000px;
+cursor:pointer;
+}
+.mem-inner{
+width:100%;
+height:250px;
+position:relative;
+transform-style:preserve-3d;
+transition:0.8s;
+}
+.mem-card.flip .mem-inner{
+transform:rotateY(180deg);
+}
+.mem-front,.mem-back{
+position:absolute;
+width:100%;
+height:100%;
+backface-visibility:hidden;
+border-radius:15px;
+}
+.mem-front img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:15px;
+}
+.mem-back{
+background:#ff4081;
+color:white;
+transform:rotateY(180deg);
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:18px;
+padding:10px;
+text-align:center;
+}
+</style>
+</head>
+<body>
+<!-- Floating Hearts -->
+<script>
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},500);
+</script>
+<!-- ENTRY -->
+<section id="entry">
+<h1>It’s a Special Day 💗</h1>
+<a href="#intro"><button>Enter Your Day ✨</button></a>
+</section>
+<!-- INTRO -->
+<section id="intro">
+<h1>Happy Birthday Nani 💕</h1>
+<p>You make my world brighter every day.</p>
+</section>
+<!-- FULL SCREEN IMAGE -->
+<section id="fullPicSection">
+<div id="fullPic" onclick="flipPic()">
+<div class="pic-card" id="picCard">
+<div class="pic-front">
+<img src="fest3.jpeg">
+</div>
+<div class="pic-back">
+Happy Birthday Nani 🎂💖 <br><br>
+chala kothaga undhi asal nani ante kani such a cute name kadhaa koncham special feel kaa igaa 
+Anyway ippud adhi kadhu le matterrr<br>
+Once again manyyyyyy moreeeee happyyyyy returns of the day nee.... <br>
+sorry if we hurt by any chance.... we(behalf of smiley too)...<br>
+love you sathwiii...<br>
+</div>
+</div>
+</div>
+</section>
+<!-- MAKE A WISH -->
+<section id="wishSection">
+<h1 id="wishText">Make a Wish ✨</h1>
+<div class="candle-container">
+<div class="flame" id="flame"></div>
+<div class="candle"></div>
+</div>
+</section>
+<div id="countdown">10</div>
+<!-- MEMORIES -->
+<section id="memories">
+<h1>Our Memories 💞</h1>
+<div class="gallery">
+<div class="mem-card" onclick="this.classList.toggle('flip')">
+<div class="mem-inner">
+<div class="mem-front"><img src="tb3.jpeg"></div>
+<div class="mem-back">Pre bday celebration 💖<BR>16/FEB/2025</div>
+</div>
+</div>
+<div class="mem-card" onclick="this.classList.toggle('flip')">
+<div class="mem-inner">
+<div class="mem-front"><img src="grp-ter.jpeg"></div>
+<div class="mem-back">freshers day celebrations 😍<br>5/OCT/2024</div>
+</div>
+</div>
+<div class="mem-card" onclick="this.classList.toggle('flip')">
+<div class="mem-inner">
+<div class="mem-front"><img src="evng.jpeg"></div>
+<div class="mem-back">One of my favorite evenings 💕2/DEC/2024</div>
+</div>
+</div>
+<div class="mem-card" onclick="this.classList.toggle('flip')">
+<div class="mem-inner">
+<div class="mem-front"><img src="first.jpeg"></div>
+<div class="mem-back">Our first memory together 💌<br>7/SEP/2024</div>
+</div>
+</div>
+<div class="mem-card" onclick="this.classList.toggle('flip')">
+<div class="mem-inner">
+<div class="mem-front"><img src="amb3.jpeg"></div>
+<div class="mem-back">Random day outs 😘<br>10/NOV/2024</div>
+</div>
+</div>
+<div class="mem-card" onclick="this.classList.toggle('flip')">
+<div class="mem-inner">
+<div class="mem-front"><img src="fresh-room.jpeg"></div>
+<div class="mem-back">Traditional day celebrations ❤️<br> 4/OCT/2024</div>
+</div>
+</div>
+<!-- NEW MEMORY 7 -->
+<div class="mem-card" onclick="this.classList.toggle('flip')">
+<div class="mem-inner">
+<div class="mem-front"><img src="CHAR.jpeg"></div>
+<div class="mem-back">HAPPY BIRTHDAY once again 💞<br>23/FEB/2026</div>
+</div>
+</div>
+<!-- NEW MEMORY 8 -->
+<div class="mem-card" onclick="this.classList.toggle('flip')">
+<div class="mem-inner">
+<div class="mem-front"><img src="HEBSIBD.jpeg"></div>
+<div class="mem-back">It's been one yr already...<br> Appieee birthdayyy... 💖<br>23/FEB/2025</div>
+</div>
+</div>
+</div>
+</section>
+<!-- MESSAGE -->
+<section id="messageSection">
+<h1>A Special Message 💌</h1>
+<p>You are the best thing that ever happened to me.<br>
+I love you so much ❤️</p>
+</section>
+<!-- FINAL -->
+<section id="finalSection">
+<h1>Forever With You 🌙</h1>
+</section>
+<script>
+/* Flip Full Image */
+function flipPic(){
+document.getElementById("picCard").classList.toggle("flip");
+}
+/* Countdown when scroll */
+let started=false;
+let time=10;
+window.addEventListener("scroll",()=>{
+let wish=document.getElementById("wishSection").getBoundingClientRect().top;
+if(wish<window.innerHeight/2 && !started){
+started=true;
+startCountdown();
+}
+});
+function startCountdown(){
+let timer=setInterval(()=>{
+document.getElementById("countdown").innerHTML=time;
+time--;
+if(time<0){
+clearInterval(timer);
+document.getElementById("flame").style.display="none";
+document.getElementById("wishText").innerHTML="✨ Your wish is sent to the stars ✨";
+document.getElementById("countdown").innerHTML="🎉";
+}
+},1000);
+}
+</script>
+</body>
+</html>
